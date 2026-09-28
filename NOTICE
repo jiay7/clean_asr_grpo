@@ -1,0 +1,15 @@
+This package adapts a selected subset of ModelScope ms-swift (Apache-2.0).
+Copyright (c) ModelScope Contributors. All rights reserved.
+Upstream: https://github.com/modelscope/ms-swift
+Pinned commit: f7385b200c4f629dec1a70af32c9b4174067b9c1
+Sources:
+  swift/rl_core/advantage.py: compute_advantages (GRPO group/batch/none branches)
+  swift/rlhf_trainers/grpo_trainer.py: _compute_loss_and_metrics
+    (token importance ratio, clipped objective, bounded k3, grpo/bnpo/dr_grpo reductions)
+Modifications:
+  Removed framework, distributed, inference engine and alternative algorithm dependencies.
+  Added validation; reject all-missing active rewards instead of treating them as zero.
+  Added standalone model adapter, synchronous optimizer loop, EOS masking helper,
+  example ASR reward and tests. These additions are not upstream training recipes.
+  Retained only KL-in-loss and sequence-level GRPO advantages; no KL-in-reward.
+See README.md for unsupported features and integration assumptions.
